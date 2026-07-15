@@ -2267,9 +2267,14 @@ a { text-decoration: none; color: inherit; }
 .btn-agendar:hover .arw{transform:translateX(4px)}
 @keyframes ag-pulse{0%{box-shadow:0 0 0 0 rgba(79,192,240,.55)}70%{box-shadow:0 0 0 16px rgba(79,192,240,0)}100%{box-shadow:0 0 0 0 rgba(79,192,240,0)}}
 @media(max-width:760px){
-  .agendar-box{padding:34px 24px;flex-direction:column;text-align:center;align-items:center}
+  .agendar{padding:40px 0}
+  .agendar-box{padding:30px 20px;flex-direction:column;text-align:center;align-items:center}
+  .agendar-left{min-width:0;width:100%}
+  .agendar-left h2{font-size:22px}
   .agendar-left p{margin:0 auto}
-  .btn-agendar{width:100%;justify-content:center}
+  .agendar-right{width:100%}
+  .btn-agendar{width:100%;justify-content:center;white-space:normal;font-size:15.5px;padding:16px 18px;line-height:1.25}
+  .btn-agendar .arw{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   .agendar-box::before,.btn-agendar,.agendar-pill .live{animation:none}
