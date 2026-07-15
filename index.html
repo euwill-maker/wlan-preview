@@ -644,7 +644,7 @@ a { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  align-items: center;
+  align-items: stretch;
 }
 .plans-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
@@ -656,7 +656,10 @@ a { text-decoration: none; color: inherit; }
   text-align: center;
   position: relative;
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
 }
+.plan-card .plan-price-label { margin-top: auto; }
 
 .plan-card:hover {
   transform: translateY(-8px);
@@ -2764,7 +2767,7 @@ a { text-decoration: none; color: inherit; }
           <span class="faq-icon">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Não temos fidelidade! Você pode cancelar o serviço quando quiser, sem multa e sem burocracia. Acreditamos que o cliente deve ficar porque gosta do serviço — não porque está preso em contrato.</div>
+          <div class="faq-answer-inner">Sim, nossos planos contam com fidelidade contratual. O período e as condições são apresentados no momento da contratação. Fale com a nossa equipe pelo WhatsApp que explicamos tudo com transparência.</div>
         </div>
       </div>
 
