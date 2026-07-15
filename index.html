@@ -1773,17 +1773,21 @@ a { text-decoration: none; color: inherit; }
   .topbar-cta { font-size: 11px; padding: 5px 11px; letter-spacing: 0; flex-shrink: 0; }
 
   /* NAV */
-  .nav { height: 64px; top: 46px; }
+  .nav { height: 60px; top: 44px; }
+  .nav-inner { padding: 0 14px; }
+  .nav-logo-img { height: 42px; }
+  .nav-agendar span { display: none; }
+  .nav-agendar { padding: 9px; }
   .nav-central span { display: none; }
-  .nav-central { padding: 8px; }
+  .nav-central { padding: 9px; }
   .nav-logo-icon { width: 36px; height: 36px; font-size: 18px; }
   .nav-logo-name { font-size: 20px; }
   .nav-logo-tagline { display: none; }
-  .nav-cta { font-size: 12px; padding: 8px 18px; }
+  .nav-cta { font-size: 12.5px; padding: 9px 16px; }
 
   /* HERO */
   .hero-carousel {
-    margin-top: 110px;
+    margin-top: 104px;
     height: 600px;
     min-height: 520px;
     max-height: 680px;
@@ -1877,10 +1881,12 @@ a { text-decoration: none; color: inherit; }
   .stat-label { font-size: 12px; }
 
   /* COMO FUNCIONA */
-  .como { padding: 56px 0; }
-  .steps-grid { grid-template-columns: 1fr; gap: 14px; }
-  .step-card { padding: 24px 20px; display: flex; align-items: flex-start; gap: 18px; text-align: left; }
-  .step-num { width: 44px; height: 44px; font-size: 20px; margin: 0; flex-shrink: 0; }
+  .como { padding: 52px 0; }
+  .steps-grid { grid-template-columns: 1fr; gap: 13px; }
+  .step-card { padding: 20px 18px; display: grid; grid-template-columns: auto 1fr; column-gap: 15px; row-gap: 3px; align-items: center; text-align: left; }
+  .step-num { grid-row: 1 / span 2; align-self: center; width: 46px; height: 46px; font-size: 20px; margin: 0; }
+  .step-title { grid-column: 2; margin-bottom: 2px; font-size: 14.5px; }
+  .step-text { grid-column: 2; font-size: 13.5px; }
   .step-card::before { display: none; }
 
   /* PLANOS */
