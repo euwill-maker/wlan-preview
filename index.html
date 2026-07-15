@@ -257,6 +257,27 @@ a { text-decoration: none; color: inherit; }
   background: rgba(255,255,255,0.08);
 }
 
+.nav-agendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #bfe4f8;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(41,171,226,0.5);
+  background: rgba(41,171,226,0.12);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-agendar svg { width: 16px; height: 16px; }
+.nav-agendar:hover {
+  color: #fff;
+  border-color: rgba(41,171,226,0.9);
+  background: rgba(41,171,226,0.22);
+}
+
 .nav-cta {
   background: var(--white);
   color: var(--blue-dark);
@@ -1463,6 +1484,59 @@ a { text-decoration: none; color: inherit; }
   transform: translateX(0);
 }
 
+.agendar-float {
+  position: fixed;
+  bottom: 110px;
+  right: 32px;
+  z-index: 200;
+  width: 62px; height: 62px;
+  background: linear-gradient(135deg,#1A5FB4,#29ABE2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 28px rgba(30,111,196,0.5);
+  transition: all 0.25s;
+  animation: agFloatPulse 2.5s infinite;
+}
+.agendar-float:hover {
+  transform: scale(1.15);
+  box-shadow: 0 10px 36px rgba(30,111,196,0.65);
+  animation: none;
+}
+.agendar-float svg { width: 30px; height: 30px; color:#fff; }
+@keyframes agFloatPulse {
+  0% { box-shadow: 0 6px 28px rgba(30,111,196,0.5), 0 0 0 0 rgba(41,171,226,0.5); }
+  70% { box-shadow: 0 6px 28px rgba(30,111,196,0.5), 0 0 0 14px rgba(41,171,226,0); }
+  100% { box-shadow: 0 6px 28px rgba(30,111,196,0.5), 0 0 0 0 rgba(41,171,226,0); }
+}
+.agendar-float-label {
+  position: absolute;
+  right: 72px;
+  background: var(--blue-dark);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(8px);
+  transition: all 0.25s;
+}
+.agendar-float-label::after {
+  content: '';
+  position: absolute;
+  right: -6px; top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right: none;
+  border-left-color: var(--blue-dark);
+}
+.agendar-float:hover .agendar-float-label { opacity: 1; transform: translateX(0); }
+@media(prefers-reduced-motion:reduce){ .agendar-float{animation:none} }
+
 @keyframes waPulse {
   0%, 100% { box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
   50% { box-shadow: 0 6px 0 14px rgba(37,211,102,0), 0 6px 28px rgba(37,211,102,0.5); }
@@ -1866,6 +1940,9 @@ a { text-decoration: none; color: inherit; }
   .whatsapp-float { bottom: 20px; right: 16px; width: 54px; height: 54px; }
   .whatsapp-float svg { width: 26px; height: 26px; }
   .whatsapp-float-label { display: none; }
+  .agendar-float { bottom: 86px; right: 16px; width: 54px; height: 54px; }
+  .agendar-float svg { width: 26px; height: 26px; }
+  .agendar-float-label { display: none; }
 
   /* SEÇÕES — espaçamento geral */
   .section-title { margin-bottom: 36px; }
@@ -2297,6 +2374,12 @@ a { text-decoration: none; color: inherit; }
   <a href="https://wa.me/556721044032?text=Olá!%20Quero%20aproveitar%20a%20oferta%20de%20instalação%20grátis." class="topbar-cta" target="_blank">Garantir</a>
 </div>
 
+<!-- ── AGENDAR FLUTUANTE ── -->
+<a class="agendar-float" href="contratar.html" aria-label="Agendar instalação online">
+  <span class="agendar-float-label">Agende sua instalação</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>
+</a>
+
 <!-- ── WHATSAPP FLUTUANTE ── -->
 <a class="whatsapp-float" href="https://wa.me/556721044032?text=Olá!%20Quero%20contratar%20um%20plano%20Wlan%20Network." target="_blank" aria-label="Fale no WhatsApp">
   <span class="whatsapp-float-label">Fale agora no WhatsApp</span>
@@ -2310,6 +2393,10 @@ a { text-decoration: none; color: inherit; }
       <img src="logo.png?v=2" alt="Wlan Network" class="nav-logo-img">
     </a>
     <div style="display:flex; align-items:center; gap:10px;">
+      <a href="contratar.html" class="nav-agendar" title="Agendar instalação online">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>
+        <span>Agendar</span>
+      </a>
       <a href="https://ixc.wlannetwork.com.br/central_assinante_web/login" target="_blank" class="nav-central" title="Central do Assinante">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span>Minha Conta</span>
