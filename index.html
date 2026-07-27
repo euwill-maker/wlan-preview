@@ -911,6 +911,79 @@ a { text-decoration: none; color: inherit; }
   border-color: #E8F0FF;
 }
 
+/* ── CROSS-LINK PRA SEÇÃO DE CELULAR ── */
+.cross-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  background: var(--blue-pale);
+  color: var(--blue);
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.25s;
+}
+.cross-link:hover { border-color: var(--blue); transform: translateY(-2px); }
+.cross-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ── PLANOS DE CELULAR ── */
+.celular {
+  background: var(--gray-bg);
+  padding: 88px 0;
+}
+
+.cel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.cel-card { padding: 32px 20px 26px; }
+
+.cel-total {
+  font-family: 'Nunito', sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.cel-total span { font-size: 18px; font-weight: 800; letter-spacing: 0.5px; margin-left: 4px; }
+.plan-card.featured .cel-total { color: white; }
+
+.cel-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+.cel-breakdown span {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #5A6A88;
+  background: var(--gray-bg);
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+.cel-breakdown span strong { color: var(--blue); font-weight: 800; }
+.plan-card.featured .cel-breakdown span { background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.80); }
+.plan-card.featured .cel-breakdown span strong { color: #6EC1F0; }
+
+.cel-swipe-hint { display: none; }
+
+.cel-note {
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #5A6A88;
+  max-width: 720px;
+  margin: 36px auto 0;
+}
+
 /* ── VALOR FIXO CTA ── */
 .valor-fixo {
   background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
@@ -1739,6 +1812,7 @@ a { text-decoration: none; color: inherit; }
 ══════════════════════════════ */
 @media (max-width: 1024px) {
   .plans-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .cel-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .plan-card.featured { transform: scale(1); }
   .plan-card.featured:hover { transform: translateY(-8px); }
   .depoimentos-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -1893,6 +1967,40 @@ a { text-decoration: none; color: inherit; }
   .plans { padding: 56px 0; }
   .plans-grid { grid-template-columns: 1fr; gap: 16px; }
   .plan-card { padding: 28px 20px 24px; }
+
+  /* CELULAR — carrossel horizontal (6 cards empilhados ficaria longo demais) */
+  .celular { padding: 56px 0; }
+  .celular .container { padding-right: 0; }
+  .cel-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 22px 24px 20px 4px;
+    margin-left: -4px;
+    scrollbar-width: none;
+  }
+  .cel-grid::-webkit-scrollbar { display: none; }
+  .cel-card {
+    flex: 0 0 84%;
+    max-width: 320px;
+    scroll-snap-align: center;
+    padding: 26px 18px 22px;
+  }
+  .cel-total { font-size: 42px; }
+  .cel-note { padding: 0 24px; margin-top: 24px; }
+  .cel-swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5A6A88;
+    margin-top: 2px;
+  }
   .plan-card.featured { transform: none; box-shadow: 0 12px 36px rgba(10,30,61,0.25); }
   .plan-card.featured:hover { transform: translateY(-6px); }
   .plan-speed { font-size: 44px; }
@@ -2552,6 +2660,10 @@ a { text-decoration: none; color: inherit; }
       <div class="section-label">Nossos Planos</div>
       <h2 class="section-title">ESCOLHA O PLANO<br><span class="accent">IDEAL PRA VOCÊ</span></h2>
       <p style="font-size:15px;color:#5A6A88;margin-top:10px">Selecione sua cidade pra ver os planos disponíveis na sua região.</p>
+      <a href="#celular" class="cross-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+        Também temos planos de celular
+      </a>
     </div>
 
     <div class="city-tabs reveal">
@@ -2689,6 +2801,153 @@ a { text-decoration: none; color: inherit; }
         <div class="plan-terms">*Valor válido até o vencimento</div>
       </div>
     </div>
+
+  </div>
+</section>
+
+<!-- ── PLANOS DE CELULAR ── -->
+<section class="celular" id="celular">
+  <div class="container">
+    <div class="plans-header reveal">
+      <div class="section-label">WLAN Celular</div>
+      <h2 class="section-title">CHIP COM INTERNET,<br><span class="accent">LIGAÇÃO E WHATSAPP</span></h2>
+      <p style="font-size:15px;color:#5A6A88;margin-top:10px">WhatsApp ilimitado em todos os planos. Disponível em Água Clara, Três Lagoas e Inocência.</p>
+      <div class="cel-swipe-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Arraste pro lado pra ver todos
+      </div>
+    </div>
+
+    <div class="cel-grid">
+
+      <div class="plan-card cel-card reveal reveal-delay-1">
+        <div class="cel-total">5<span>GIGA</span></div>
+        <div class="cel-breakdown">
+          <span><strong>3GB</strong> no plano</span>
+          <span><strong>+1GB</strong> trazendo seu número</span>
+          <span><strong>+1GB</strong> de bônus</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 50 min de voz</li>
+          <li><span class="plan-check">✓</span> 20 SMS</li>
+          <li><span class="plan-check">✓</span> WhatsApp ilimitado</li>
+          <li><span class="plan-check">✓</span> Skeelo — livros digitais</li>
+        </ul>
+        <div class="plan-price-label">Por apenas</div>
+        <div class="plan-price">R$28<span style="font-size:22px">,90</span></div>
+        <div class="plan-price-note">/mês</div>
+        <a href="https://wa.me/556721044032?text=Ol%C3%A1!%20Quero%20o%20plano%20de%20celular%205%20GIGA%20(R%24%2028%2C90)%20da%20Wlan%20Network." class="btn-plan" target="_blank">Quero esse chip</a>
+      </div>
+
+      <div class="plan-card cel-card reveal reveal-delay-2">
+        <div class="cel-total">10<span>GIGA</span></div>
+        <div class="cel-breakdown">
+          <span><strong>6GB</strong> no plano</span>
+          <span><strong>+2GB</strong> trazendo seu número</span>
+          <span><strong>+2GB</strong> de bônus</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 100 min de voz</li>
+          <li><span class="plan-check">✓</span> 50 SMS</li>
+          <li><span class="plan-check">✓</span> WhatsApp ilimitado</li>
+          <li><span class="plan-check">✓</span> Skeelo — livros digitais</li>
+        </ul>
+        <div class="plan-price-label">Por apenas</div>
+        <div class="plan-price">R$44<span style="font-size:22px">,90</span></div>
+        <div class="plan-price-note">/mês</div>
+        <a href="https://wa.me/556721044032?text=Ol%C3%A1!%20Quero%20o%20plano%20de%20celular%2010%20GIGA%20(R%24%2044%2C90)%20da%20Wlan%20Network." class="btn-plan" target="_blank">Quero esse chip</a>
+      </div>
+
+      <div class="plan-card cel-card featured reveal reveal-delay-3">
+        <div class="plan-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Mais Vendido</div>
+        <div class="cel-total">18<span>GIGA</span></div>
+        <div class="cel-breakdown">
+          <span><strong>12GB</strong> no plano</span>
+          <span><strong>+2GB</strong> trazendo seu número</span>
+          <span><strong>+4GB</strong> de bônus</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Voz ilimitada</li>
+          <li><span class="plan-check">✓</span> 100 SMS</li>
+          <li><span class="plan-check">✓</span> WhatsApp ilimitado</li>
+          <li><span class="plan-check">✓</span> Skeelo — livros digitais</li>
+        </ul>
+        <div class="plan-price-label">Por apenas</div>
+        <div class="plan-price">R$55<span style="font-size:22px">,90</span></div>
+        <div class="plan-price-note">/mês</div>
+        <a href="https://wa.me/556721044032?text=Ol%C3%A1!%20Quero%20o%20plano%20de%20celular%2018%20GIGA%20(R%24%2055%2C90)%20da%20Wlan%20Network." class="btn-plan" target="_blank">Quero esse chip</a>
+      </div>
+
+      <div class="plan-card cel-card reveal reveal-delay-1">
+        <div class="cel-total">25<span>GIGA</span></div>
+        <div class="cel-breakdown">
+          <span><strong>15GB</strong> no plano</span>
+          <span><strong>+3GB</strong> trazendo seu número</span>
+          <span><strong>+7GB</strong> de bônus</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Voz ilimitada</li>
+          <li><span class="plan-check">✓</span> 100 SMS</li>
+          <li><span class="plan-check">✓</span> WhatsApp ilimitado</li>
+          <li><span class="plan-check">✓</span> Skeelo — livros digitais</li>
+        </ul>
+        <div class="plan-price-label">Por apenas</div>
+        <div class="plan-price">R$69<span style="font-size:22px">,90</span></div>
+        <div class="plan-price-note">/mês</div>
+        <a href="https://wa.me/556721044032?text=Ol%C3%A1!%20Quero%20o%20plano%20de%20celular%2025%20GIGA%20(R%24%2069%2C90)%20da%20Wlan%20Network." class="btn-plan" target="_blank">Quero esse chip</a>
+      </div>
+
+      <div class="plan-card cel-card reveal reveal-delay-2">
+        <div class="cel-total">35<span>GIGA</span></div>
+        <div class="cel-breakdown">
+          <span><strong>20GB</strong> no plano</span>
+          <span><strong>+5GB</strong> trazendo seu número</span>
+          <span><strong>+10GB</strong> de bônus</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Voz ilimitada</li>
+          <li><span class="plan-check">✓</span> 100 SMS</li>
+          <li><span class="plan-check">✓</span> WhatsApp ilimitado</li>
+          <li><span class="plan-check">✓</span> Skeelo — livros digitais</li>
+        </ul>
+        <div class="plan-price-label">Por apenas</div>
+        <div class="plan-price">R$84<span style="font-size:22px">,90</span></div>
+        <div class="plan-price-note">/mês</div>
+        <a href="https://wa.me/556721044032?text=Ol%C3%A1!%20Quero%20o%20plano%20de%20celular%2035%20GIGA%20(R%24%2084%2C90)%20da%20Wlan%20Network." class="btn-plan" target="_blank">Quero esse chip</a>
+      </div>
+
+      <div class="plan-card cel-card reveal reveal-delay-3">
+        <div class="cel-total">50<span>GIGA</span></div>
+        <div class="cel-breakdown">
+          <span><strong>25GB</strong> no plano</span>
+          <span><strong>+5GB</strong> trazendo seu número</span>
+          <span><strong>+20GB</strong> de bônus</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Voz ilimitada</li>
+          <li><span class="plan-check">✓</span> 100 SMS</li>
+          <li><span class="plan-check">✓</span> WhatsApp ilimitado</li>
+          <li><span class="plan-check">✓</span> Skeelo — livros digitais</li>
+        </ul>
+        <div class="plan-price-label">Por apenas</div>
+        <div class="plan-price">R$94<span style="font-size:22px">,90</span></div>
+        <div class="plan-price-note">/mês</div>
+        <a href="https://wa.me/556721044032?text=Ol%C3%A1!%20Quero%20o%20plano%20de%20celular%2050%20GIGA%20(R%24%2094%2C90)%20da%20Wlan%20Network." class="btn-plan" target="_blank">Quero esse chip</a>
+      </div>
+
+    </div>
+
+    <p class="cel-note">
+      *O total de GIGA inclui o bônus de portabilidade, liberado para quem traz o número de outra operadora.
+      Sem portabilidade, o plano fica com a franquia do plano + bônus. Valores mensais, sujeitos a alteração.
+      Fale com a gente pra confirmar disponibilidade na sua cidade.
+    </p>
 
   </div>
 </section>
